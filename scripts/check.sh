@@ -20,6 +20,7 @@ else
   CASES="$PY tools/oracle.py"
 fi
 F=.work/fx
+mkdir -p $F
 [[ -f $F/trees.spec && -f $F/dec.hex ]] || cap $PY tools/oracle.py gen $F >/dev/null || { echo "FAIL setup: fixtures"; exit 1; }
 for op in encode decode; do
   in=$F/trees.spec; [[ $op == decode ]] && in=$F/dec.hex
