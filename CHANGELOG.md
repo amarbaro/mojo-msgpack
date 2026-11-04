@@ -2,4 +2,4 @@
 
 Newest first.
 
-- v0.1.0 (2026-11-04): first release, MessagePack encode and decode for Mojo 1.2
+- [v0.1.0](docs/releases/v0.1.0.md) (2026-11-04): first release, MessagePack encode and decode for Mojo 1.2
