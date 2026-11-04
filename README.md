@@ -1,5 +1,9 @@
 # mojo-msgpack
 
+<!-- badges -->
+[![ci](https://github.com/amarbaro/mojo-msgpack/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/amarbaro/mojo-msgpack/actions/workflows/ci.yml) [![latest release](https://img.shields.io/github/v/release/amarbaro/mojo-msgpack)](https://github.com/amarbaro/mojo-msgpack/releases/latest) [![license](https://img.shields.io/github/license/amarbaro/mojo-msgpack)](https://github.com/amarbaro/mojo-msgpack/blob/main/LICENSE) [![checks](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/amarbaro/mojo-msgpack/badges/checks.json)](https://github.com/amarbaro/mojo-msgpack/actions/workflows/ci.yml)
+<!-- /badges -->
+
 <!-- install -->
 Install: `pixi add mojo-msgpack` once published. For now: `git clone https://github.com/amarbaro/mojo-msgpack`, then `mojo run -I mojo-msgpack/src app.mojo`.
 
