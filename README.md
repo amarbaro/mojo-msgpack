@@ -1,5 +1,28 @@
 # mojo-msgpack
 
+<!-- install -->
+Install: `pixi add mojo-msgpack` once published. For now: `git clone https://github.com/amarbaro/mojo-msgpack`, then `mojo run -I mojo-msgpack/src app.mojo`.
+
+```mojo
+from msgpack import Encoder, parse
+
+
+def main() raises:
+    var e = Encoder()
+    e.map(2)
+    e.str("name"); e.str("héllo")
+    e.str("when"); e.timestamp(1700000000, 5)
+    var d = parse(e.buf)  # str and bin are views into e.buf: e must outlive d
+    print(len(d.nodes), d.str(2), d.timestamp(4)[0])
+    _ = len(e.buf)
+```
+
+| | Mojo | Python msgpack |
+|---|---|---|
+| encode | 5 to 6 ms | 33 to 34 ms |
+Baselines and method: [docs/perf.md](docs/perf.md)
+<!-- /install -->
+
 MessagePack for Mojo, pure Mojo: `Encoder` writes builtins straight into one buffer, `parse` reads a
 `Span[UInt8]` into a flat node table whose str, bin and ext values are views of the input (nothing copied).
 305 lines, no dependencies. Every encode and decode result is checked against Python `msgpack`
