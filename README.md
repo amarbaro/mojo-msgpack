@@ -16,11 +16,6 @@ def main() raises:
     print(len(d.nodes), d.str(2), d.timestamp(4)[0])
     _ = len(e.buf)
 ```
-
-| | Mojo | Python msgpack |
-|---|---|---|
-| encode | 5 to 6 ms | 33 to 34 ms |
-Baselines and method: [docs/perf.md](docs/perf.md)
 <!-- /install -->
 
 MessagePack for Mojo, pure Mojo: `Encoder` writes builtins straight into one buffer, `parse` reads a
@@ -28,29 +23,7 @@ MessagePack for Mojo, pure Mojo: `Encoder` writes builtins straight into one buf
 305 lines, no dependencies. Every encode and decode result is checked against Python `msgpack`
 on 2503 trees and 9475 byte strings, including truncated, mutated, oversized-length and too-deep input.
 
-```mojo
-from msgpack import Encoder, parse
-
-
-def main() raises:
-    var e = Encoder()
-    e.map(2)
-    e.str("name"); e.str("héllo")
-    e.str("when"); e.timestamp(1700000000, 5)
-    var d = parse(e.buf)  # str and bin are views into e.buf: e must outlive d
-    print(len(d.nodes), d.str(2), d.timestamp(4)[0])
-    _ = len(e.buf)
-```
-
-## Install
-
 Requires Mojo 1.2.
-
-| Way | Command |
-|---|---|
-| Source path | `mojo run -I path/to/mojo-msgpack/src app.mojo` |
-| Precompiled | `mojo precompile src/msgpack -o msgpack.mojoc` |
-| Vendor | copy `src/msgpack/` into your project |
 
 ## What you get
 
