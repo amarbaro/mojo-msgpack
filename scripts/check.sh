@@ -35,8 +35,8 @@ if [[ $CASES == .work/cases ]]; then
   for t in examples/quickstart tests/docs; do
     [[ -f $t.mojo ]] && { cap $M run -I src $t.mojo > /dev/null || { echo "FAIL example: $t.mojo"; exit 1; }; }
   done
-  # property smoke step: needs the sibling mojo-proptest checkout (or PROPTEST=<its src>)
-  PT=${PROPTEST:-../mojo-proptest/src}; [[ -d $PT ]] || { echo "FAIL setup: $PT missing (mojo-proptest)"; exit 1; }
+  # property smoke step: mojo-proptest from $PROPTEST, the sibling checkout, or a pinned fetch
+  PT=$(scripts/proptest.sh)
   cap $M run -I src -I "$PT" tests/prop.mojo > /dev/null || { echo "FAIL prop: tests/prop.mojo"; exit 1; }
 fi
 echo "PASS all"
