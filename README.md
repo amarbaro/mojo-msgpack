@@ -52,11 +52,14 @@ Requires Mojo 1.2.
 
 The Mojo decode builds the node table; Python builds objects.
 
+Docs: [api](docs/api.md), [design](docs/design.md), [perf](docs/perf.md). The example above is
+`examples/quickstart.mojo` and the one in the API doc is `tests/docs.mojo`; the gate runs both.
+
 ## Checks
 
 | Script | What |
 |---|---|
-| `scripts/check.sh` | encode of 2503 trees and decode of 9475 byte strings identical to `tools/oracle.py`; API errors; every run capped at 4 GB |
+| `scripts/check.sh` | encode of 2503 trees and decode of 9475 byte strings identical to `tools/oracle.py`; API errors; the doc examples; every run capped at 4 GB |
 | `scripts/selfcheck.sh` | 6 mutants (boundary, depth, UTF-8, trailing bytes, timestamp form, length) all rejected |
 | `scripts/bench.sh` | the numbers above |
 | `scripts/ci.sh` | install and gate, same on GitHub and a local VM |
