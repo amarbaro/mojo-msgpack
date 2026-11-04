@@ -4,6 +4,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 ROOT=$PWD
+export PROPTEST=${PROPTEST:-$ROOT/../mojo-proptest/src}   # mutant trees live in .work/, so the sibling path must be absolute
 F=src/msgpack/__init__.mojo
 mutants=(
   "$F|        elif v >= -32:|        elif v >= -31:|negative fixint boundary"
