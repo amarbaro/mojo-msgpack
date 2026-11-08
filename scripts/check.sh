@@ -7,7 +7,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p .work
-M=.venv/bin/mojo; PY=".venv/bin/python -I"
+M=${MOJO:-.venv/bin/mojo}; PY=".venv/bin/python -I"
 if systemd-run --user --scope -q true 2>/dev/null; then
   cap() { systemd-run --user --scope -q -p MemoryMax=4G -p MemorySwapMax=0 timeout 120 "$@"; }
 else
