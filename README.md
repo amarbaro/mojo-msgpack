@@ -5,7 +5,8 @@
 <!-- /badges -->
 
 <!-- install -->
-Install: `pixi add mojo-msgpack` once published. For now: `git clone https://github.com/amarbaro/mojo-msgpack`, then `mojo run -I mojo-msgpack/src app.mojo`.
+Install: `pixi workspace channel add https://conda.modular.com/max https://prefix.dev/amarbaro/amarbaro`, then `pixi add mojo-msgpack` (import `msgpack`). From source: `git clone https://github.com/amarbaro/mojo-msgpack`, then `mojo run -I mojo-msgpack/src app.mojo`.
+Toolchains: Mojo 1.2 stable, and the nightly 1.3.0.dev2026110805 in the weekly [mojo-libs](https://github.com/amarbaro/mojo-libs) matrix (36 libraries on stable, 35 on nightly).
 
 ```mojo
 from msgpack import Encoder, parse
@@ -54,6 +55,8 @@ The Mojo decode builds the node table; Python builds objects.
 
 Docs: [api](docs/api.md), [design](docs/design.md), [perf](docs/perf.md). The example above is
 `examples/quickstart.mojo` and the one in the API doc is `tests/docs.mojo`; the gate runs both.
+
+**Limits:** No streaming parse, no map-key lookup helper, no owned value tree; nesting is capped at depth 1024 (Python msgpack's limit). A `Doc` points into the input and does not own it: use the input after the Doc's last use (`_ = len(buf)`). Decoding takes 16 bytes per node besides the input.
 
 ## Checks
 
