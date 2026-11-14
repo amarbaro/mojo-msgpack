@@ -1,0 +1,4 @@
+name = "mojo-msgpack"
+version = "0.1.1"
+description = "MessagePack encode and decode for Mojo, pure Mojo, zero-copy str and bin views"
+tags = ["mojo", "msgpack", "serialization"]
